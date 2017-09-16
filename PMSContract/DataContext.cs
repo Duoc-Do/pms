@@ -13,7 +13,7 @@ namespace PMSContract
         }
 
         public virtual DbSet<ContractModel> CONTRACTS { get; set; }
-
+        public virtual DbSet<ContractConditionModel> CONTRACTCONDITION { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             

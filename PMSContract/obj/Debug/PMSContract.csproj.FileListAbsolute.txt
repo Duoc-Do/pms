@@ -174,3 +174,6 @@ D:\DuocDo\ASPNet\pms\PMSContract\bin\Microsoft.Owin.Security.MicrosoftAccount.xm
 D:\DuocDo\ASPNet\pms\PMSContract\obj\Debug\PMSContract.dll
 D:\DuocDo\ASPNet\pms\PMSContract\obj\Debug\PMSContract.pdb
 D:\DuocDo\ASPNet\pms\PMSContract\obj\Debug\PMSContract.csprojResolveAssemblyReference.cache
+D:\DuocDo\ASPNet\pms\PMSContract\bin\PagedList.Mvc.dll
+D:\DuocDo\ASPNet\pms\PMSContract\bin\PagedList.dll
+D:\DuocDo\ASPNet\pms\PMSContract\bin\PagedList.Mvc.xml

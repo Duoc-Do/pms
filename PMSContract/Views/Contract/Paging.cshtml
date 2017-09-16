@@ -1,0 +1,217 @@
+﻿@model IEnumerable<PMSContract.ContractModel>
+
+
+@section HeaderPage{
+    <section class="content-header">
+        <h1>
+            Contract page
+        </h1>
+
+    </section>
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Contract List</title>
+</head>
+<body>
+
+    <div class="box-header">
+        <h1>@ViewBag.aa</h1>
+        <i class="fa fa-fw fa-plus"></i>@Html.ActionLink("Create New", "Create")
+        </p>
+    </div>
+
+    <div class="box box-info">
+        <!-- <div class="box-header">
+            <h3 class="box-title">Contract List</h3>
+        </div>
+        /.box-header -->
+        <!-- /.box-body --><div class="box-body">
+            <div class="fr-list">
+                <table id="contractList222" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ContractID)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ContractIDERP)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CCE_ID)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ContractCode)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ContractDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CommencementDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Description)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Description_VN)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ContractFormat)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FCAmount)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.LCAmount)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FCAmountExtension)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.LCAmountExtension)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ClientID)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ContractorID)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DurationInDays)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ExtensionInDays)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ModifyDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CurrencyCode)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Status)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ForOrdering)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Type)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.proj_id)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.proj_status)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ContractID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ContractIDERP)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CCE_ID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ContractCode)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ContractDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CommencementDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description_VN)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ContractFormat)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FCAmount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LCAmount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FCAmountExtension)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LCAmountExtension)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ClientID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ContractorID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DurationInDays)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ExtensionInDays)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ModifyDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CurrencyCode)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ForOrdering)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Type)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.proj_id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.proj_status)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div id="1243"></div>
+        <a href="javascript:;" onclick="cuibap()">aaaa</a>
+    </div>
+    <!-- /.box -->
+    <script>
+        function cuibap() {
+            $.get("https://prashantsblogs.wordpress.com/2013/01/30/enable-pagination-for-the-collection-in-c/", function (data) {
+                $("#1243").append(data);
+            })
+        }
+        
+    </script>
+</body>
+</html>
+
+

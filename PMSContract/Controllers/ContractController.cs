@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace PMSContract.Controllers
@@ -10,17 +11,40 @@ namespace PMSContract.Controllers
     {
         DataFunction db = new DataFunction();
         // GET: Contract
+        [System.Web.Http.HttpGet]
         public ActionResult Index()
         {
             return View(db.ViewList());
         }
-        [HttpGet]
+        [System.Web.Http.HttpGet]
+        public ActionResult Paging(int page = 1,int pageSize=10,int isjson=0)
+        {
+            DataContext db = new DataContext();
+            var loaddb = db.CONTRACTS.OrderByDescending(s=>s.ContractID).Skip(page).Take(pageSize).ToList();
+            if (isjson==1)
+            {
+                return Json(new { rows = loaddb, status = 1, message = "completed" }, JsonRequestBehavior.AllowGet);
+            }
+            
+
+            if (isjson == 2)
+            {
+                return PartialView(loaddb);
+            }
+
+            ViewBag.aa = "dsghfjdshfgdjhfg";
+
+            return View(loaddb);
+        }
+
+
+        [System.Web.Http.HttpGet]
         public ActionResult Create()
         {
             var model = new ContractModel() { ModifyDate = DateTime.Now };
             return View(model);
         }
-        [HttpPost]
+        [System.Web.Http.HttpPost]
         public ActionResult Create(ContractModel contract)
         {
           
