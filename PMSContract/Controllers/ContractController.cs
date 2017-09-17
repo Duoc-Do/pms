@@ -36,7 +36,16 @@ namespace PMSContract.Controllers
 
             return View(loaddb);
         }
-
+        public ActionResult PageScroll(int? id)
+        {
+            DataContext db = new DataContext();
+            var page = id ?? 0;
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_Contracts", GetPaginatedContracts(page));
+            }
+            return View("Index", db.CONTRACTS.Where(x => x.ContractID != null).Take(recordsPerPage));
+        }
 
         [System.Web.Http.HttpGet]
         public ActionResult Create()
