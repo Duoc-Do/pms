@@ -11,6 +11,7 @@ namespace PMSContract
     public class DataFunction
     {
         DataContext db = new DataContext();
+
         public List<ContractModel> ViewList()
         {
             return db.CONTRACTS.OrderByDescending(s=>s.ContractID).ToList();
@@ -21,6 +22,7 @@ namespace PMSContract
             db.SaveChanges();
             return entity.ContractID;
         }
+
         //public IHttpActionResult ListAllPaging()
         //{
         //    var loaddt = db.CONTRACTS.Skip(1).Take(10).ToList();

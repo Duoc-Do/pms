@@ -6,10 +6,11 @@ using System.Web.Http;
 using System.Web.Mvc;
 
 namespace PMSContract.Controllers
-{  
+{
     public class ContractController : Controller
     {
         DataFunction db = new DataFunction();
+        const int recordsPerPage = 48;
         // GET: Contract
         [System.Web.Http.HttpGet]
         public ActionResult Index()
@@ -17,53 +18,64 @@ namespace PMSContract.Controllers
             return View(db.ViewList());
         }
         [System.Web.Http.HttpGet]
-        public ActionResult Paging(int page = 1,int pageSize=10,int isjson=0)
+        public ActionResult testpaging(int page = 1, int pageSize = 200, int isjson = 0)
         {
             DataContext db = new DataContext();
-            var loaddb = db.CONTRACTS.OrderByDescending(s=>s.ContractID).Skip(page).Take(pageSize).ToList();
-            if (isjson==1)
+            var skipRecords = page * pageSize;
+            var loaddb = db.CONTRACTS.Where(x => x.ContractCode != null)
+                .OrderBy(x => x.ContractID).Skip(skipRecords).Take(pageSize).ToList();
+            if (isjson == 1)
             {
                 return Json(new { rows = loaddb, status = 1, message = "completed" }, JsonRequestBehavior.AllowGet);
             }
-            
+
 
             if (isjson == 2)
             {
-                return PartialView(loaddb);
+                return PartialView("_ContractPartial", loaddb);
             }
 
-            ViewBag.aa = "dsghfjdshfgdjhfg";
+            ViewBag.aa = "Contract List";
 
-            return View(loaddb);
+            return View("testpaging", loaddb);
+
         }
-        public ActionResult PageScroll(int? id)
+        public ActionResult Paging(int? id)
         {
             DataContext db = new DataContext();
             var page = id ?? 0;
             if (Request.IsAjaxRequest())
             {
-                return PartialView("_Contracts", GetPaginatedContracts(page));
+                return PartialView("_ContractPartial", GetPaginatedContracts(page));
             }
-            return View("Index", db.CONTRACTS.Where(x => x.ContractID != null).Take(recordsPerPage));
+            return View("Paging", db.CONTRACTS.Where(x => x.ContractCode != null).Take(recordsPerPage));
         }
+        public List<ContractModel> GetPaginatedContracts(int page = 1)
+        {
+            DataContext db = new DataContext();
+            var skipRecords = page * recordsPerPage;
 
-        [System.Web.Http.HttpGet]
+            return db.CONTRACTS.Where(x => x.ContractCode != null)
+                .OrderBy(x => x.ContractID)
+                .Skip(skipRecords)
+                .Take(recordsPerPage).ToList();
+        }
+        /*   [System.Web.Http.HttpGet, System.Web.Http.Route("Create")]
         public ActionResult Create()
         {
             var model = new ContractModel() { ModifyDate = DateTime.Now };
             return View(model);
-        }
-        [System.Web.Http.HttpPost]
+        }*/
+        [System.Web.Http.HttpPost, System.Web.Http.Route("Create")]
         public ActionResult Create(ContractModel contract)
         {
-          
             if (ModelState.IsValid)
             {
-              
+
                 long id = db.Insert(contract);
                 if (id > 0)
                 {
-                    return RedirectToAction("Index", "Contract");
+                    return RedirectToAction("Create", "Contract");
                 }
                 else
                 {
@@ -71,8 +83,29 @@ namespace PMSContract.Controllers
                 }
             }
 
-            return View("Index");
+            return View("Create");
         }
+  
+          [System.Web.Http.HttpPost]
+          public ActionResult Create(ContractModel contract)
+          {
+
+              if (ModelState.IsValid)
+              {
+
+                  long id = db.Insert(contract);
+                  if (id > 0)
+                  {
+                      return RedirectToAction("Index", "Contract");
+                  }
+                  else
+                  {
+                      ModelState.AddModelError("", "Them thanh cong");
+                  }
+              }
+
+              return View("Index");
+          }
 
     }
 }

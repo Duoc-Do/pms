@@ -7735,6 +7735,9 @@
     <Content Include="Views\Contract\Create.cshtml" />
     <Content Include="Views\Shared\_LayoutAdminLTE.cshtml" />
     <Content Include="Views\Contract\Paging.cshtml" />
+    <Content Include="Views\Shared\_ContractPartial.cshtml" />
+    <Content Include="Views\Shared\testpaging.cshtml" />
+    <Content Include="Views\Contract\testpaging.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Data Tables</title>
+    <title>PMS CONTRACT</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -322,9 +322,10 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MAIN NAVIGATION</li>
-        
-                    <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
-                 
+
+                    <li><i class="fa fa-book"></i>@Html.ActionLink("Test Paging", "testpaging")
+                    </li>
+
                 </ul>
             </section>
             <!-- /.sidebar -->
@@ -334,23 +335,20 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                   @RenderSection("HeaderPage",false)
+                    @RenderSection("HeaderPage", false)
                 </h1>
-              
+
             </section>
             <!-- Main content -->
             <section class="content">
-                
+
                 @RenderBody()
             </section>
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <footer class="main-footer">
-      
-         
-        </footer>
-      
+        <footer class="main-footer"></footer>
+
         <!-- Add the sidebar's background. This div must be placed
              immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
@@ -360,9 +358,9 @@
     <script src="/Assets/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap 3.3.7 -->
     <script src="/Assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- DataTables -->
+    <!-- DataTables-->
     <script src="/Assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="/Assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="/Assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script> 
     <!-- SlimScroll -->
     <script src="/Assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <!-- FastClick -->
@@ -370,20 +368,20 @@
     <!-- AdminLTE App -->
     <script src="/Assets/dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="/Assets/dist/js/demo.js"></script>
+    <!-- <script src="/Assets/dist/js/demo.js"></script>-->
     <!-- page script -->
     <script>
-  $(function () {
-   $('#contractList').DataTable()
-   /* $('#contractList').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })*/
-  })
+       $(function () {
+         // $('#contractList').DataTable()
+           $('#contractList').DataTable({
+             'paging'      : false,
+             'lengthChange': false,
+             'searching'   : false,
+             'ordering'    : true,
+             'info'        : true,
+             'autoWidth'   : false
+           })
+         })
     </script>
 </body>
 </html>

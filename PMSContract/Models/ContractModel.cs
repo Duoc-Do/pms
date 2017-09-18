@@ -14,15 +14,20 @@
         public long ContractID { get; set; }
 
         [Display(Name = "Contract IDERP")]
+        [Required]
         public string ContractIDERP { get; set; }
 
         [Display(Name = "CCE ID")]
+        [Required]
         public string CCE_ID { get; set; }
 
         [Display(Name = "Code")]
+        [Required]
+        [StringLength(100, MinimumLength =3, ErrorMessage =" Code must be between 3 - 100 characters long")]
         public string ContractCode { get; set; }
 
         [Display(Name = "Date")]
+        [DataType(DataType.MultilineText)]
         public DateTime? ContractDate { get; set; }
 
         [Display(Name = "Commencement Date")]
