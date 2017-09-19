@@ -65,7 +65,7 @@ namespace PMSContract.Controllers
         {
             var model = new ContractModel() { ModifyDate = DateTime.Now };
             return View(model);
-        }*/
+        }
         [System.Web.Http.HttpPost, System.Web.Http.Route("Create")]
         public ActionResult Create(ContractModel contract)
         {
@@ -84,28 +84,56 @@ namespace PMSContract.Controllers
             }
 
             return View("Create");
-        }
+        }*/
   
-          [System.Web.Http.HttpPost]
+
           public ActionResult Create(ContractModel contract)
           {
-
-              if (ModelState.IsValid)
-              {
-
-                  long id = db.Insert(contract);
-                  if (id > 0)
-                  {
-                      return RedirectToAction("Index", "Contract");
-                  }
-                  else
-                  {
-                      ModelState.AddModelError("", "Them thanh cong");
-                  }
-              }
-
-              return View("Index");
+              return View("Create");
           }
+        public ActionResult Insert(ContractModel contract)
+        {
 
+            if (ModelState.IsValid)
+            {
+
+                long id = db.Insert(contract);
+                if (id > 0)
+                {
+                    return RedirectToAction("testpaging", "Contract");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Completeted");
+                }
+
+            }
+            return View("Index");
+        }
+        public ActionResult Edit(int id)
+        {
+            DataContext db = new DataContext();
+            var ct = db.CONTRACTS.Find(id);
+            return View(ct);
+        }
+        public ActionResult Update(ContractModel contract)
+        {
+
+            if (ModelState.IsValid)
+            {
+
+                var result = db.Update(contract);
+                if (result)
+                {
+                    return RedirectToAction("Index", "Contract");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Updated");
+                }
+
+            }
+            return View("Index");
+        }
     }
 }

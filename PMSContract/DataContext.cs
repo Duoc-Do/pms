@@ -19,5 +19,9 @@ namespace PMSContract
             
         }
 
+        internal void DeleteObject(ContractModel ct)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

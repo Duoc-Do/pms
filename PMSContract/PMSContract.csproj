@@ -220,7 +220,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContractConditionController.cs" />
     <Compile Include="Controllers\ContractController.cs" />
-    <Compile Include="DAL\CONTRACTS.cs" />
     <Compile Include="DAL\DataFunction.cs" />
     <Compile Include="Controllers\Default1Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -7738,6 +7737,7 @@
     <Content Include="Views\Shared\_ContractPartial.cshtml" />
     <Content Include="Views\Shared\testpaging.cshtml" />
     <Content Include="Views\Contract\testpaging.cshtml" />
+    <Content Include="Views\Contract\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
