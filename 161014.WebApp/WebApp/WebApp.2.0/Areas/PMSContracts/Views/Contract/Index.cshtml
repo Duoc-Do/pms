@@ -140,7 +140,7 @@
 <script>
     var loadpg = document.getElementById('loadingmore');
     var scwindow = document.querySelector('html');
-    var _inCallback = false;
+    var _inCallback = 1;
     var pagenumber = 1;
 
     loadpg.addEventListener('click', function () {
@@ -149,18 +149,19 @@
 
     function loadContracts() {
         $('div#loading').empty();
-        alert("hello");
+     
         pagenumber++;
+        var _inCallback = 2;
         $('div#loading').html('<p>Loading...</p>');
-        $.get("Contract/Paging?page=" + pagenumber + "&pagesize=2&isjson=2", function (data) {
-             alert(data);
+        $.get("Contract/Contract?page=" + pagenumber + "&pagesize=pagenumber&isjson=_inCallback", function (data) {
+           
             if (data != '') {
                 $("#contractList tbody").append(data);
             }
             else {
                 pagenumber = -1;
             }
-            _inCallback = false;
+            _inCallback = 1;
             $('div#loading').empty();
         });
     }

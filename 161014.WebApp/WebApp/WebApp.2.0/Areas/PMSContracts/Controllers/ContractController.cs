@@ -94,7 +94,7 @@ namespace WebApp.Areas.PMSContracts.Controllers
         }
 
         [HttpGet]
-        public ActionResult Paging(int page = 1, int pageSize = 2, int isjson = 0)
+        public ActionResult Contract(int page = 1, int pageSize = 10, int isjson = 0)
         {
 
             var skipRecords = page * pageSize;
@@ -108,8 +108,8 @@ namespace WebApp.Areas.PMSContracts.Controllers
             {
                 return PartialView("_ContractPartial", loaddb);
             }
-            ViewBag.aa = "Contract List";
-            return View("testpaging", loaddb);
+         
+            return View("Contract", loaddb);
 
         }
     }
