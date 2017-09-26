@@ -1,0 +1,116 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using WebApp.Areas.PMSContracts.Models;
+
+namespace WebApp.Areas.PMSContracts.Controllers
+{
+    public class ContractController : Controller
+    {
+        PMSDataContext objContext = new PMSDataContext();
+
+        public ActionResult Index()
+        {
+            var tbContract = objContext.CONTRACTS.OrderByDescending(s => s.ContractID).ToList();
+            return View(tbContract);
+        }
+        [HttpGet]
+        public ActionResult Index(string search) // ten bien phai giong voi name="search" cua button
+        {
+            var tbContract = from s in objContext.CONTRACTS select s;
+
+            if (!String.IsNullOrEmpty(search))
+            {
+                tbContract = tbContract.Where(s => s.Description_VN.ToUpper().Contains(search.ToUpper())
+                                       || s.ContractCode.ToUpper().Contains(search.ToUpper()) || s.ContractIDERP.ToUpper().Contains(search.ToUpper()) || s.proj_status.ToUpper().Contains(search.ToUpper()));
+            }
+            return View(tbContract.ToList());
+
+        }
+
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var tbContract = objContext.CONTRACTS.Find(id);
+            if (tbContract == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tbContract);
+        }
+        public ActionResult Create() // For view layer
+        {
+            return View(new ContractModel());
+        }
+        [HttpPost]
+        public ActionResult Create(ContractModel model) // For action create
+        {
+            objContext.CONTRACTS.Add(model);
+            objContext.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult Delete(int id) // For view layer
+        {
+            ContractModel tbContract = objContext.CONTRACTS.Find(id);
+
+            return View(tbContract);
+        }
+        [HttpPost]
+        public ActionResult Delete(int id, ContractModel model) // For action detete
+        {
+            var tbContract =
+              objContext.CONTRACTS.Where(x => x.ContractID == id).SingleOrDefault();
+            if (tbContract != null)
+            {
+                objContext.CONTRACTS.Remove(tbContract);
+                objContext.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
+        public ActionResult Edit(int id) // For view layer
+        {
+            var tbContract = objContext.CONTRACTS.Where(x => x.ContractID == id).SingleOrDefault();
+            return View(tbContract);
+        }
+        [HttpPost]
+        public ActionResult Edit(ContractModel model) // For action edit
+        {
+            {
+                ContractModel tbContract = objContext.CONTRACTS.Where(x => x.ContractID == model.ContractID).SingleOrDefault();
+                if (tbContract != null)
+                {
+                    objContext.Entry(tbContract).CurrentValues.SetValues(model);
+                    objContext.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(tbContract);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult Paging(int page = 1, int pageSize = 2, int isjson = 0)
+        {
+
+            var skipRecords = page * pageSize;
+            var loaddb = objContext.CONTRACTS.Where(x => x.ContractCode != null)
+                .OrderBy(x => x.ContractID).Skip(skipRecords).Take(pageSize).ToList();
+            if (isjson == 1)
+            {
+                return Json(new { rows = loaddb, status = 1, message = "completed" }, JsonRequestBehavior.AllowGet);
+            }
+            if (isjson == 2)
+            {
+                return PartialView("_ContractPartial", loaddb);
+            }
+            ViewBag.aa = "Contract List";
+            return View("testpaging", loaddb);
+
+        }
+    }
+}
