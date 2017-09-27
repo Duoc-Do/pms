@@ -832,6 +832,7 @@
     <Compile Include="Areas\Gap\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Gap\GapAreaRegistration.cs" />
     <Compile Include="Areas\PMSContracts\Controllers\ContractController.cs" />
+    <Compile Include="Areas\PMSContracts\Models\ClientModel.cs" />
     <Compile Include="Areas\PMSContracts\Models\ContractModel.cs" />
     <Compile Include="Areas\PMSContracts\PMSContractsAreaRegistration.cs" />
     <Compile Include="Areas\PMSContracts\PMSDataContext.cs" />

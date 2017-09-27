@@ -14,21 +14,20 @@ namespace WebApp.Areas.PMSContracts.Controllers
 
         public ActionResult Index()
         {
-            var tbContract = objContext.CONTRACTS.OrderByDescending(s => s.ContractID).ToList();
+            var tbContract = objContext.CONTRACTS.OrderByDescending(s => s.ContractID).Take(10).ToList();
             return View(tbContract);
         }
         [HttpGet]
         public ActionResult Index(string search) // ten bien phai giong voi name="search" cua button
         {
             var tbContract = from s in objContext.CONTRACTS select s;
-
+         
             if (!String.IsNullOrEmpty(search))
             {
                 tbContract = tbContract.Where(s => s.Description_VN.ToUpper().Contains(search.ToUpper())
                                        || s.ContractCode.ToUpper().Contains(search.ToUpper()) || s.ContractIDERP.ToUpper().Contains(search.ToUpper()) || s.proj_status.ToUpper().Contains(search.ToUpper()));
             }
-            return View(tbContract.ToList());
-
+            return View(tbContract.Take(10).ToList());
         }
 
         public ActionResult Details(int? id)
@@ -76,6 +75,7 @@ namespace WebApp.Areas.PMSContracts.Controllers
         public ActionResult Edit(int id) // For view layer
         {
             var tbContract = objContext.CONTRACTS.Where(x => x.ContractID == id).SingleOrDefault();
+            ViewBag.ClientList = new SelectList(GetClientList(id),"ResName");
             return View(tbContract);
         }
         [HttpPost]
@@ -108,9 +108,46 @@ namespace WebApp.Areas.PMSContracts.Controllers
             {
                 return PartialView("_ContractPartial", loaddb);
             }
-         
-            return View("Contract", loaddb);
+
+            return View("Index", loaddb);
 
         }
+        [HttpGet]
+        public List<ClientModel> GetClientList(long id)
+        {
+            var clients = from d in objContext.CONTRACTS
+                                                 join b in objContext.CONTRACTS_CLIENTS on d.ClientID equals b.ClientID
+                                                 where d.ContractID == id
+                                                 select new { b.ClientID,b.ResName};
+            List<ClientModel> bn = new List<ClientModel>();
+            ClientModel f = new ClientModel();
+            foreach(var t in clients)
+            {
+                f.ClientID = t.ClientID;
+                f.ResName = t.ResName;
+                bn.Add(f);
+            }                                 
+            return bn;
+        }
+
+        //const int recordsPerPage = 8;
+        //public ActionResult Contract(int? id)
+        //{
+        //    var page = id ?? 0;
+        //    if (Request.IsAjaxRequest())
+        //    {
+        //        return PartialView("_ContractPartial", GetPaginatedProducts(page));
+        //    }
+        //    return View("Index","Contract", objContext.CONTRACTS.Where(x => x.ContractCode != null).Take(recordsPerPage));
+        //}
+        //private List<ContractModel> GetPaginatedProducts(int page = 1)
+        //{
+        //    var skipRecords = page * recordsPerPage;
+
+        //    return objContext.CONTRACTS.Where(x => x.ContractCode != null)
+        //        .OrderBy(x => x.ContractID)
+        //        .Skip(skipRecords)
+        //        .Take(recordsPerPage).ToList();
+        //}
     }
 }

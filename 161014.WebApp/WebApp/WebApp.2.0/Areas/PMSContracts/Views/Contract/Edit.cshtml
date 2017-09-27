@@ -3,6 +3,27 @@
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Areas/PMSContracts/Views/Shared/_LayoutPMSContract.cshtml";
+
+    Dictionary<string, string> ajaxoption = (Dictionary<string, string>)ViewBag.ajaxoption;
+    var db = new WebApp.Areas.PMSContracts.PMSDataContext();
+    IEnumerable<SelectListItem> lists =
+    from value in db.CONTRACTS_CLIENTS join value1 in db.CONTRACTS on value.ClientID equals value1.ClientID
+    where value1.ContractID == Model.ContractID
+    select new SelectListItem
+    {
+        Text = value.ClientID.ToString(),
+        Value = value.ResName
+    };
+    Dictionary<string, string> ajaxoption1 = (Dictionary<string, string>)ViewBag.ajaxoption;
+    var db1 = new WebApp.Areas.PMSContracts.PMSDataContext();
+    IEnumerable<SelectListItem> lists2 =
+    from value in db.CONTRACTS_CLIENTS
+    join value1 in db.CONTRACTS on value.ClientID equals value1.ClientID
+    select new SelectListItem
+    {
+        Text = value.ResName,
+        Value = value.ClientID.ToString()
+    };
 }
 
 
@@ -60,11 +81,12 @@
                 </div>
                 <div class="form-group col-lg-4 col-md-6">
                     @Html.LabelFor(model => model.ClientID)
-                    @Html.TextBoxFor(model => model.ClientID, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.ClientID)
-                    @*@Html.DropDownListFor(model => model.proj_id, new SelectList(new List<int>().Add(Convert.ToInt32(Mo))), "-- Select Status --")*@
-           
-
+                    @*@Html.TextBoxFor(model => model.ClientID, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ClientID)*@
+                    @*@Html.DropDownListFor(model => model.clientModels, new SelectList(new List<int>().Add(Convert.ToInt32(Model.clientModels))), "-- Select Status --")*@
+                    @*@Html.DropDownListFor(model => model.ClientID, lists)*@ / Client name: &nbsp;
+                    @Html.DropDownListFor(model => model.ClientID, lists2)
+                    
                 </div>
                 <div class="form-group col-lg-4 col-md-6">
                     @Html.LabelFor(model => model.FCAmount)
@@ -169,6 +191,14 @@
             <!-- /.box-footer -->
         </form>
     </div>
+
+     <script>
+    
+         document.getElementById("ClientID").addEventListener("change", function () {
+             alert("dgfdfgdfgdfgdfgdfgdfgdfgdfgdfgdf");
+         }, true);
+     
+    </script>
 }      <!-- /.box -->
 @*@section Scripts {
         @Scripts.Render("~/bundles/jqueryval")
