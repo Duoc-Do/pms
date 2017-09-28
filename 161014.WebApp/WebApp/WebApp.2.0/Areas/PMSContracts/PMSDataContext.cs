@@ -12,6 +12,7 @@ namespace WebApp.Areas.PMSContracts
         public PMSDataContext() : base("name=WebAppAccEntities2") { }
 
         //public object CLIENTS { get; internal set; }
+        public virtual DbSet<GeneralModel> CONTRACTS_CONDITIONS_GENERAL { get; set; }
         public virtual DbSet<ClientModel> CONTRACTS_CLIENTS { get; set; }
         public virtual DbSet<ContractModel> CONTRACTS { get; set; }
 
