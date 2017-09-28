@@ -107,6 +107,12 @@
 
                 </p>
             </div>
+            <ul>
+                @foreach (var item in Model.clientModels)
+            {
+                    <li>@item.ResName</li>
+                }
+            </ul>
             <div role="tabpanel" class="tab-pane" id="TechTab">...</div>
             <div role="tabpanel" class="tab-pane" id="TechSpecsTab">...</div>
         </div>
