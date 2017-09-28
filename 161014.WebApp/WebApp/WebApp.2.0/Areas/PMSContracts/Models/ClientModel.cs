@@ -10,6 +10,10 @@ namespace WebApp.Areas.PMSContracts.Models
     [Table("CONTRACTS_CLIENTS")]
     public class ClientModel
     {
+        public ClientModel()
+        {
+            ContractModel = new HashSet<ContractModel>();
+        }
         [Key]
         public int ClientID { get; set; }
 
@@ -48,5 +52,7 @@ namespace WebApp.Areas.PMSContracts.Models
         public bool? Status { get; set; }
 
         public DateTime ModifiedDate { get; set; }
+
+        public virtual ICollection<ContractModel> ContractModel { get; set; }
     }
 }

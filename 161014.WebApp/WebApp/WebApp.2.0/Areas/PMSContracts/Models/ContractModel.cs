@@ -93,8 +93,6 @@ namespace WebApp.Areas.PMSContracts.Models
         [StringLength(1)]
         [Display(Name = "Project Status")]
         public string proj_status { get; set; }
-
-
-        public virtual List<ClientModel> clientModels { get; set; }
+        public virtual List<ClientModel> ClientModels { get; set; }
     }
 }
