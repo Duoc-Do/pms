@@ -36,7 +36,12 @@ namespace WebApp.Areas.PMSContracts.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var tbContract = objContext.CONTRACTS.Find(id);
+            ContractModel tbContract = objContext.CONTRACTS.Find(id);
+            ContractModel ct = new ContractModel();
+            var client = from b in objContext.CONTRACTS_CLIENTS
+                         join a in objContext.CONTRACTS on b.ClientID equals a.ClientID
+                         where a.ContractID == id
+                         select new { b.ClientID, b.ResName, b.Territory, b.AccountNumber, b.Bank, b.CompanyAddress, b.DeskPhone, b.Email, b.Type, b.CompanyName, b.Fax, b.HandPhone, b.Status, b.ModifiedDate };
             if (tbContract == null)
             {
                 return HttpNotFound();

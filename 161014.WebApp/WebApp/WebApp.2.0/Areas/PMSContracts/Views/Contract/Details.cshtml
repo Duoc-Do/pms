@@ -1,5 +1,4 @@
-﻿@model WebApp.Areas.PMSContracts.Models.ContractModel
-
+﻿@model  WebApp.Areas.PMSContracts.Models.ContractModel
 @{
     ViewBag.Title = "Details";
     Layout = "~/Areas/PMSContracts/Views/Shared/_LayoutPMSContract.cshtml";
@@ -90,8 +89,7 @@
             </div>
             <div role="tabpanel" class="tab-pane" id="GeneralTab">
                 <dl class="dl-horizontal">
-
-          Code....General
+                Code....General
                 </dl>
                 <p>
                     @Html.ActionLink("Back to List", "Index", "Contract", null, new { @class = "btn btn-default" })
@@ -107,12 +105,12 @@
 
                 </p>
             </div>
-            <ul>
-                @foreach (var item in Model.ClientModels)
+            @*<ul>
+                @foreach (var item in Model)
                 {
-                    <li>@item.ClientID</li>
+                    <li>@item.ResName</li>
                 }
-            </ul>
+            </ul>*@
             <div role="tabpanel" class="tab-pane" id="TechTab">...</div>
             <div role="tabpanel" class="tab-pane" id="TechSpecsTab">...</div>
         </div>

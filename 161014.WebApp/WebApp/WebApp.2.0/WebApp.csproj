@@ -832,8 +832,11 @@
     <Compile Include="Areas\Gap\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Gap\GapAreaRegistration.cs" />
     <Compile Include="Areas\PMSContracts\Controllers\ContractController.cs" />
+    <Compile Include="Areas\PMSContracts\Controllers\GeneralController.cs" />
     <Compile Include="Areas\PMSContracts\Models\ClientModel.cs" />
     <Compile Include="Areas\PMSContracts\Models\ContractModel.cs" />
+    <Compile Include="Areas\PMSContracts\Models\GeneralModel.cs" />
+    <Compile Include="Areas\PMSContracts\Models\keyAttribute.cs" />
     <Compile Include="Areas\PMSContracts\PMSContractsAreaRegistration.cs" />
     <Compile Include="Areas\PMSContracts\PMSDataContext.cs" />
     <Compile Include="Areas\Pos\Controllers\AppAccountController.cs" />
@@ -10672,6 +10675,10 @@
     <Content Include="Areas\PMSContracts\Views\Contract\Create.cshtml" />
     <Content Include="Areas\PMSContracts\Views\Contract\Search.cshtml" />
     <Content Include="Areas\PMSContracts\Views\Shared\_ContractPartial.cshtml" />
+    <Content Include="Areas\PMSContracts\excelfolder\1.xlsx" />
+    <Content Include="Areas\PMSContracts\Views\General\Create.cshtml" />
+    <Content Include="Areas\PMSContracts\Views\General\Details.cshtml" />
+    <Content Include="Areas\PMSContracts\Views\General\Index.cshtml" />
     <None Include="Properties\PublishProfiles\WebApp.pubxml" />
     <Content Include="Images\avatars\thumbs\noDefaultImage.gif" />
     <Content Include="Images\logos\noDefaultImage.gif" />
