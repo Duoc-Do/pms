@@ -953,7 +953,6 @@ E:\PMSContract\pms\161014.WebApp\WebApp\WebApp.2.0\bin\Microsoft.AspNet.SignalR.
 E:\PMSContract\pms\161014.WebApp\WebApp\WebApp.2.0\bin\Microsoft.Owin.xml
 E:\PMSContract\pms\161014.WebApp\WebApp\WebApp.2.0\bin\Microsoft.Owin.Host.SystemWeb.xml
 E:\PMSContract\pms\161014.WebApp\WebApp\WebApp.2.0\bin\Microsoft.Owin.Security.xml
-E:\PMSContract\pms\161014.WebApp\WebApp\WebApp.2.0\bin\Microsoft.ReportViewer.WebForms.xml
 E:\PMSContract\pms\161014.WebApp\WebApp\WebApp.2.0\bin\Newtonsoft.Json.xml
 E:\PMSContract\pms\161014.WebApp\WebApp\WebApp.2.0\bin\Recaptcha.pdb
 E:\PMSContract\pms\161014.WebApp\WebApp\WebApp.2.0\bin\System.Net.Http.Formatting.xml
@@ -1005,6 +1004,6 @@ E:\PMSContract\pms\161014.WebApp\WebApp\WebApp.2.0\bin\ko\System.Spatial.resourc
 E:\PMSContract\pms\161014.WebApp\WebApp\WebApp.2.0\bin\ru\System.Spatial.resources.dll
 E:\PMSContract\pms\161014.WebApp\WebApp\WebApp.2.0\bin\zh-Hans\System.Spatial.resources.dll
 E:\PMSContract\pms\161014.WebApp\WebApp\WebApp.2.0\bin\zh-Hant\System.Spatial.resources.dll
-E:\PMSContract\pms\161014.WebApp\WebApp\WebApp.2.0\obj\Debug\WebApp.csprojResolveAssemblyReference.cache
 E:\PMSContract\pms\161014.WebApp\WebApp\WebApp.2.0\obj\Debug\WebApp.dll
 E:\PMSContract\pms\161014.WebApp\WebApp\WebApp.2.0\obj\Debug\WebApp.pdb
+E:\PMSContract\pms\161014.WebApp\WebApp\WebApp.2.0\obj\Debug\WebApp.csprojResolveAssemblyReference.cache
