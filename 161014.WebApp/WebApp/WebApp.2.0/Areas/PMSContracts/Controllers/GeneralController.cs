@@ -54,6 +54,7 @@ namespace WebApp.Areas.PMSContracts.Controllers
         }
         public ActionResult Create() // For view layer
         {
+       
             return View(new GeneralModel());
         }
 
@@ -73,10 +74,7 @@ namespace WebApp.Areas.PMSContracts.Controllers
         //
         // GET: /PMSContracts/General/Create
 
-        public ActionResult Create()
-        {
-            return View();
-        }
+  
 
         //
         // POST: /PMSContracts/General/Create
