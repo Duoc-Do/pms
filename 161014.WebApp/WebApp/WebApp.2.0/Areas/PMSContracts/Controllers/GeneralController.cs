@@ -17,6 +17,11 @@ namespace WebApp.Areas.PMSContracts.Controllers
             var tbGeneral = objContext.CONTRACTS_CONDITIONS_GENERAL.OrderByDescending(s => s.ContractID).Take(10).ToList();
             return View(tbGeneral);
         }
+        public ActionResult ListOnTab(int id)
+        {
+            var tbGeneral = objContext.CONTRACTS_CONDITIONS_GENERAL.OrderByDescending(s => s.ContractID).Where(s=>s.ContractID==id).Take(10).ToList();
+            return View(tbGeneral);
+        }
         public ActionResult Import(HttpPostedFileBase excelfile)
         {
             if (excelfile==null||excelfile.ContentLength == 0)
