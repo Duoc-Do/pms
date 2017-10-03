@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -17,20 +18,21 @@ namespace WebApp.Areas.PMSContracts.Controllers
             var tbGeneral = objContext.CONTRACTS_CONDITIONS_GENERAL.OrderByDescending(s => s.ContractID).Take(10).ToList();
             return View(tbGeneral);
         }
+        [HttpPost]
         public ActionResult Import(HttpPostedFileBase excelfile)
         {
             if (excelfile==null||excelfile.ContentLength == 0)
             {
                 ViewBag.Error = "Please select a excel file";
-                return View("Index");
+                return View("Index", "General");
             }
             else
             {
                 if (excelfile.FileName.EndsWith("xls") || excelfile.FileName.EndsWith("xlsx"))
                 {
-                    //string path = Server.MapPath("~/Areas/PMSContracts/" + excelfile.FileName);
-                    string fileName = Path.GetFileName(excelfile.FileName);
-                    string path = Path.Combine(Server.MapPath("~/Content"), fileName);
+                    string path = Server.MapPath("~/Areas/PMSContracts/" + excelfile.FileName);
+                    //string fileName = Path.GetFileName(excelfile.FileName);
+                    //string path = Path.Combine(Server.MapPath("~/Areas/PMSContracts/"), fileName);
                     if (System.IO.File.Exists(path))
                         System.IO.File.Delete(path);
                     excelfile.SaveAs(path);
@@ -39,16 +41,30 @@ namespace WebApp.Areas.PMSContracts.Controllers
                     excel.Workbook workbook = application.Workbooks.Open(path);
                     excel.Worksheet worksheet = workbook.ActiveSheet;
                     excel.Range range = worksheet.UsedRange;
-                    for(int row=3; row <= range.Rows.Count; row++)
+                    List<GeneralModel> genct = new List<GeneralModel>();
+                   
+                    for (int row=3; row <= range.Rows.Count; row++)
                     {
-
+                        GeneralModel g = new GeneralModel();
+                        g.ContractID = int.Parse(((excel.Range)range.Cells[row, 1]).Text);
+                        g.ClauseCode = ((excel.Range)range.Cells[row, 2]).Text;
+                        g.ClauseContent = ((excel.Range)range.Cells[row, 3]).Text;
+                        g.OriginalLanguage = ((excel.Range)range.Cells[row, 4]).Text;
+                        g.ClauseCode = ((excel.Range)range.Cells[row, 5]).Text;
+                        g.ParentId = int.Parse(((excel.Range)range.Cells[row,6]).Text);
+                        g.BookType = ((excel.Range)range.Cells[row,7]).Text;
+                        g.CreationDate = ((excel.Range)range.Cells[row, 8]).Text;
+                        g.Type = ((excel.Range)range.Cells[row, 9]).Text;
+                        genct.Add(g);
+                     
                     }
-                    return View("Success");
+                    ViewBag.genct = genct;
+                    return View("Index", "General");
                 }
                 else
                 {
                     ViewBag.Error = "File type is incorrect<br>";
-                    return View();
+                    return View("Index", "General");
                 }
             }
         }
@@ -71,12 +87,7 @@ namespace WebApp.Areas.PMSContracts.Controllers
             return View(tbGeneral);
         }
         //
-        // GET: /PMSContracts/General/Create
 
-        public ActionResult Create()
-        {
-            return View();
-        }
 
         //
         // POST: /PMSContracts/General/Create
