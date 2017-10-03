@@ -7,37 +7,34 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm())
-{
+@*@using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>generalmodel</legend>
+        <legend>GeneralModel</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.ContractID)
         </div>
         <div class="editor-field">
-            @*@Html.EditorFor(model => model.ContractID)*@
+            @Html.EditorFor(model => model.ContractID)
             @Html.ValidationMessageFor(model => model.ContractID)
-            @Html.TextBoxFor(model => model.ContractID, new { @Value = "304" })
         </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.ClauseCode)
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.ClauseCode, new { @Value = "215" })
+            @Html.EditorFor(model => model.ClauseCode)
             @Html.ValidationMessageFor(model => model.ClauseCode)
         </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.ClauseContent)
-         
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.ClauseContent, new { @Value = "215 - Clause Content" })
+            @Html.EditorFor(model => model.ClauseContent)
             @Html.ValidationMessageFor(model => model.ClauseContent)
         </div>
 
@@ -45,7 +42,7 @@
             @Html.LabelFor(model => model.OriginalLanguage)
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.OriginalLanguage, new { @Value = "vi" })
+            @Html.EditorFor(model => model.OriginalLanguage)
             @Html.ValidationMessageFor(model => model.OriginalLanguage)
         </div>
 
@@ -53,7 +50,7 @@
             @Html.LabelFor(model => model.ParentId)
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.ParentId, new { @Value = "12" })
+            @Html.EditorFor(model => model.ParentId)
             @Html.ValidationMessageFor(model => model.ParentId)
         </div>
 
@@ -61,7 +58,7 @@
             @Html.LabelFor(model => model.BookType)
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.BookType, new { @Value = "YEL" })
+            @Html.EditorFor(model => model.BookType)
             @Html.ValidationMessageFor(model => model.BookType)
         </div>
 
@@ -69,8 +66,7 @@
             @Html.LabelFor(model => model.CreationDate)
         </div>
         <div class="editor-field">
-            @*@Html.EditorFor(model => model.CreationDate)*@
-            @Html.TextBoxFor(model => model.CreationDate, new { @Value = @DateTime.Now.ToShortDateString() })
+            @Html.EditorFor(model => model.CreationDate)
             @Html.ValidationMessageFor(model => model.CreationDate)
         </div>
 
@@ -78,26 +74,26 @@
             @Html.LabelFor(model => model.Type)
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.Type, new { @Value = "ORG" }) 
+            @Html.EditorFor(model => model.Type)
             @Html.ValidationMessageFor(model => model.Type)
         </div>
 
         <p>
-            <input type="submit" value="create" />
+            <input type="submit" value="Create" />
         </p>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("back to list", "index")
-</div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
 
 @*@section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }*@
-@*@using (Html.BeginForm("Import", "General", FormMethod.Post,new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Import", "General", FormMethod.Post,new { enctype = "multipart/form-data" }))
 {
     @Html.Raw(ViewBag.Error)
     <span>Excel File </span><input type="file" name="excelfile" /><br />
     <input type="submit" value="Import" />
-}*@
+}

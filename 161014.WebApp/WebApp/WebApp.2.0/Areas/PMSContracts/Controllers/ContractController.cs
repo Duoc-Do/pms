@@ -21,7 +21,7 @@ namespace WebApp.Areas.PMSContracts.Controllers
         public ActionResult Index(string search) // ten bien phai giong voi name="search" cua button
         {
             var tbContract = from s in objContext.CONTRACTS select s;
-            ViewBag.nhap = tbContract;
+         
             if (!String.IsNullOrEmpty(search))
             {
                 tbContract = tbContract.Where(s => s.Description_VN.ToUpper().Contains(search.ToUpper())
@@ -36,21 +36,16 @@ namespace WebApp.Areas.PMSContracts.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ContractModel tbContract = objContext.CONTRACTS.SingleOrDefault(m=>m.ContractID==id);
-            //ContractModel ct = new ContractModel();
-            //var client = from b in objContext.CONTRACTS_CLIENTS
-            //                           join a in objContext.CONTRACTS on b.ClientID equals a.ClientID
-            //                           where a.ContractID == id
-            //                           select new { b.ClientID, b.ResName, b.Territory, b.AccountNumber, b.Bank, b.CompanyAddress, b.DeskPhone, b.Email, b.Type, b.CompanyName, b.Fax, b.HandPhone, b.Status, b.ModifiedDate };
-            //foreach(var i in client)
-            //{
-            //    string n = i.ResName;
-            //}
-            //ct.ClientModels = (List<ClientModel>)client;
-            //if (tbContract == null)
-            //{
-            //    return HttpNotFound();
-            //}
+            ContractModel tbContract = objContext.CONTRACTS.Find(id);
+            ContractModel ct = new ContractModel();
+            var client = from b in objContext.CONTRACTS_CLIENTS
+                         join a in objContext.CONTRACTS on b.ClientID equals a.ClientID
+                         where a.ContractID == id
+                         select new { b.ClientID, b.ResName, b.Territory, b.AccountNumber, b.Bank, b.CompanyAddress, b.DeskPhone, b.Email, b.Type, b.CompanyName, b.Fax, b.HandPhone, b.Status, b.ModifiedDate };
+            if (tbContract == null)
+            {
+                return HttpNotFound();
+            }
             return View(tbContract);
         }
         public ActionResult Create() // For view layer
