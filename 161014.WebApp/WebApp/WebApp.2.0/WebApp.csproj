@@ -7582,6 +7582,7 @@
     <Content Include="Areas\PMSContracts\Assets\dist\img\user8-128x128.jpg" />
     <Content Include="Areas\PMSContracts\Assets\dist\js\adminlte.js" />
     <Content Include="Areas\PMSContracts\Assets\dist\js\adminlte.min.js" />
+    <Content Include="Areas\PMSContracts\Assets\dist\js\site.js" />
     <Content Include="Areas\PMSContracts\Assets\dist\js\app.js" />
     <Content Include="Areas\PMSContracts\Assets\dist\js\app.min.js" />
     <Content Include="Areas\PMSContracts\Assets\dist\js\demo.js" />
@@ -10699,6 +10700,8 @@
     <Content Include="Areas\PMSContracts\Views\General\Details.cshtml" />
     <Content Include="Areas\PMSContracts\Views\General\Index.cshtml" />
     <Content Include="Areas\PMSContracts\Views\Shared\_GeneralPartial.cshtml" />
+    <Content Include="Areas\PMSContracts\Views\General\ListOnTab.cshtml" />
+    <Content Include="Areas\PMSContracts\Views\HeaderPartial.cshtml" />
     <None Include="Properties\PublishProfiles\WebApp.pubxml" />
     <Content Include="Images\avatars\thumbs\noDefaultImage.gif" />
     <Content Include="Images\logos\noDefaultImage.gif" />
