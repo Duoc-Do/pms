@@ -89,28 +89,15 @@
             </div>
             <div role="tabpanel" class="tab-pane" id="GeneralTab">
                 <dl class="dl-horizontal">
-                Code....General
+            @*@Html.Partial("_GeneralPartial")*@
                 </dl>
-                <p>
-                    @Html.ActionLink("Back to List", "Index", "Contract", null, new { @class = "btn btn-default" })
-                    @Html.ActionLink("Edit", "Edit", new { id = Model.ContractID }, new { @class = "btn btn-info" })
-
-                </p>
+               
             </div>
             <div role="tabpanel" class="tab-pane" id="ParticularTab">
             Code Particular
-                <p>
-                    @Html.ActionLink("Back to List", "Index", "Contract", null, new { @class = "btn btn-default" })
-                    @Html.ActionLink("Edit", "Edit", new { id = Model.ContractID }, new { @class = "btn btn-info" })
-
-                </p>
+              
             </div>
-            @*<ul>
-                @foreach (var item in Model)
-                {
-                    <li>@item.ResName</li>
-                }
-            </ul>*@
+          
             <div role="tabpanel" class="tab-pane" id="TechTab">...</div>
             <div role="tabpanel" class="tab-pane" id="TechSpecsTab">...</div>
         </div>
